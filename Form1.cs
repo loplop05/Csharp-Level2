@@ -16,5 +16,24 @@ namespace C__Level2
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form2 frm = new Form2();
+            
+            frm.PersonIDReturned += Form2_PersonID;
+
+            frm.Show();
+        }
+
+        private void Form2_PersonID(object sender, int PersonID)
+        {
+          textBox1.Text = PersonID.ToString();
+        }
+
+
+
+
+
     }
 }

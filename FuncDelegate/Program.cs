@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -16,7 +17,8 @@ namespace FuncDelegate
     public class Program
     {
 
-        static Func<int, int> square = SquareNumber; 
+        static Func<int, int> square = SquareNumber;
+        static Func<int, int> square2 = x => x * x; 
 
         static int SquareNumber(int x )
         {
@@ -33,8 +35,24 @@ namespace FuncDelegate
 
 
         Action parameterlessAction = ParameterLessMethod;
+        Action parameterlessAction2 = () =>
+        {
+            Console.WriteLine("This is param less action");
+        };
 
-       static void ParameterLessMethod()
+        Action<int> actionWithIntParam = (x) =>
+        {
+            Console.WriteLine($"This is Action with param {x}");
+        };
+
+
+        Action<string,int> actionWith2param = (str,num) =>
+        {
+            Console.WriteLine($"This is Action with param {str} and {num}");
+        };
+
+
+        static void ParameterLessMethod()
         {
             Console.WriteLine("Param less method");
         }
@@ -48,15 +66,29 @@ namespace FuncDelegate
         }
 
 
+         delegate int Operation(int x, int y);
+        static void ExecuateOperation(int x ,int y , Operation ops)
+        {
+            int res = ops(x, y);
+            Console.WriteLine(res);
+        }
 
+        static int Add (int x , int y)
+        {
+            return x + y;
+        }
+
+        static int Sub(int x , int y)
+        {
+            return x - y;
+        }
 
 
         static void Main(string[] args)
         {
+            Operation AddOP = Add;
 
-            int result = square(4);
-            Console.Write(result);
-
+            ExecuateOperation(3, 4, AddOP);
             
 
 

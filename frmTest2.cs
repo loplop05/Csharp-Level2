@@ -19,9 +19,12 @@ namespace C__Level2
             InitializeComponent();
         }
 
-        private void ctrlCalculator1_OnCalculationCompleted(int obj)
+
+        private void ctrlCalculator1_OnCalculationCompleted_1(object sender, ctrlCalculator.CalculationCompleteEventArgs e)
         {
-            MessageBox.Show("Calculation completed with result: " + obj.ToString());
+            MessageBox.Show($"Result =  {e.Result} , val1 = {e.number1} , val2 = {e.number2}");
+
         }
     }
+
 }

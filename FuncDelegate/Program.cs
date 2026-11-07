@@ -5,6 +5,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using print = System.Console;
+
+using static System.Math; 
+
 
 namespace FuncDelegate
 {
@@ -84,15 +88,39 @@ namespace FuncDelegate
         }
 
 
-        static void Main(string[] args)
+        static void Procedure1(int?age)
         {
-            Operation AddOP = Add;
-
-            ExecuateOperation(3, 4, AddOP);
-            
-
+            if (!age.HasValue) { print.Write("Age is null"); }
+            else { print.Write($"Age is {age}"); }
 
 
         }
+
+
+
+
+
+        static void Main(string[] args)
+        {
+
+            
+
+            Nullable<int> nullableInt = null;
+
+            int? nullable = null;
+
+
+            int result = nullableInt ?? 0;
+
+            print.WriteLine("String Representaion ->" + (result.ToString() ?? "null"));
+            Procedure1(null);
+        }
+
+
+
+
+
+
+
     }
 }
